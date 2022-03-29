@@ -1,0 +1,22 @@
+{
+  "name": "pong-multiplayer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jam-madrigal/pong-mutliplayer-node-sockets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jam-madrigal/pong-mutliplayer-node-sockets/issues"
+  },
+  "homepage": "https://github.com/jam-madrigal/pong-mutliplayer-node-sockets#readme",
+  "dependencies": {
+    "socket.io": "^4.4.1"
+  }
+}
