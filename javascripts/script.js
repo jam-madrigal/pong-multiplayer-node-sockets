@@ -1,6 +1,8 @@
 // Canvas Related 
 const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d');
+// Connect socket.io client functions to our server
+const socket = io('http://localhost:3000');
 let paddleIndex = 0;
 
 let width = 500;
