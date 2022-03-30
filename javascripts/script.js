@@ -174,7 +174,7 @@ function loadGame() {
   socket.on('startGame', (refereeId) => {
     console.log('Referee is', refereeId);
 
-    isReferee === socket.id === refereeId;
+    isReferee = socket.id === refereeId;
     startGame();
   });
 }
@@ -182,7 +182,7 @@ function loadGame() {
 // Start Game, Reset Everything, Begin the game loop and listen and respond to user input
 function startGame() {
   // If the player is the referee, they control the bottom paddle, if not, they control the top paddle
-  paddleIndex = isReferee ? 0: 1;
+  paddleIndex = isReferee ? 0 : 1;
   window.requestAnimationFrame(animate);
   canvas.addEventListener('mousemove', (e) => {
     playerMoved = true;
@@ -201,6 +201,6 @@ function startGame() {
 // On Load
 loadGame();
 // Event listener to log the user's socket id
-socket.on('connection', () => {
+socket.on('connect', () => {
   console.log('Connected as...', socket.id)
 });
