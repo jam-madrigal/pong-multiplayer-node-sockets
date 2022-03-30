@@ -163,11 +163,23 @@ function animate() {
   window.requestAnimationFrame(animate);
 }
 
-// Start Game, Reset Everything
-function startGame() {
+// On load
+function loadGame() {
   createCanvas();
   renderIntro();
+  socket.emit('ready');
   
+  // When the server emits a startGame event after 2 players connect, make this player the referee and start the game
+  socket.on('startGame', (refereeId) => {
+    console.log('Referee is', refereeId);
+
+    isReferee === socket.id === refereeId;
+    startGame();
+  });
+}
+
+// Start Game, Reset Everything, Begin the game loop and listen and respond to user input
+function statGame() {
   paddleIndex = 0;
   window.requestAnimationFrame(animate);
   canvas.addEventListener('mousemove', (e) => {
@@ -190,10 +202,3 @@ startGame();
 socket.on('connection', () => {
   console.log('Connected as...', socket.id)
 });
-
-// When the server emits a startGame event, log the refeee id from the server and update isReferee variable
-// socket.on('startGame', (refereeId) => {
-//   if (socket.id === refereeId) {
-//     isReferee = true;
-//   }
-// });
