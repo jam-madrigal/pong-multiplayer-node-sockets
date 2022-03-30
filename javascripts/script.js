@@ -184,4 +184,7 @@ function startGame() {
 
 // On Load
 startGame();
-
+// Event listener to log the user's socket id
+socket.on('connection', () => {
+  console.log('Connected as...', socket.id)
+})

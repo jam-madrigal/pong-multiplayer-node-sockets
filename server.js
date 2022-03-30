@@ -12,7 +12,7 @@ server.listen(PORT, () => {
     console.log(`Server is listening on ${PORT}...`);
 });
 
-// Registering an event listener for the connection event, which happens every time a user connects
+// Registering an event listener for the connection event, which happens every time a user connects, and logging the user's socket id
 io.on('connection', (socket) => {
-    console.log('User connected');
+    console.log('User connected', socket.id);
 });
