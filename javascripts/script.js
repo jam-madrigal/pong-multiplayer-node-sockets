@@ -3,6 +3,8 @@ const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d');
 // Connect socket.io client functions to our server
 const socket = io('http://localhost:3000');
+// Variable to update to track who is the referee for the game
+let isReferee = false;
 let paddleIndex = 0;
 
 let width = 500;
@@ -187,4 +189,11 @@ startGame();
 // Event listener to log the user's socket id
 socket.on('connection', () => {
   console.log('Connected as...', socket.id)
-})
+});
+
+// When the server emits a startGame event, log the refeee id from the server and update isReferee variable
+// socket.on('startGame', (refereeId) => {
+//   if (socket.id === refereeId) {
+//     isReferee = true;
+//   }
+// });
