@@ -180,7 +180,7 @@ function loadGame() {
 }
 
 // Start Game, Reset Everything, Begin the game loop and listen and respond to user input
-function statGame() {
+function startGame() {
   // If the player is the referee, they control the bottom paddle, if not, they control the top paddle
   paddleIndex = isReferee ? 0: 1;
   window.requestAnimationFrame(animate);
@@ -199,7 +199,7 @@ function statGame() {
 }
 
 // On Load
-startGame();
+loadGame();
 // Event listener to log the user's socket id
 socket.on('connection', () => {
   console.log('Connected as...', socket.id)
