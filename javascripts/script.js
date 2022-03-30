@@ -5,6 +5,7 @@ const context = canvas.getContext('2d');
 const socket = io('http://localhost:3000');
 // Variable to update to track who is the referee for the game
 let isReferee = false;
+
 let paddleIndex = 0;
 
 let width = 500;
@@ -180,7 +181,8 @@ function loadGame() {
 
 // Start Game, Reset Everything, Begin the game loop and listen and respond to user input
 function statGame() {
-  paddleIndex = 0;
+  // If the player is the referee, they control the bottom paddle, if not, they control the top paddle
+  paddleIndex = isReferee ? 0: 1;
   window.requestAnimationFrame(animate);
   canvas.addEventListener('mousemove', (e) => {
     playerMoved = true;
