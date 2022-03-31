@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
 
         readyPlayerCount++;
         // Broadcast the start game event when both players are ready, and send the player referee id, which will always be the second player in this case
-        if (readyPlayerCount === 2) {
+        if (readyPlayerCount % 2 === 0) {
             io.emit('startGame', socket.id);
         }  
     });
