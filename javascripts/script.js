@@ -193,6 +193,10 @@ function startGame() {
     if (paddleX[paddleIndex] > (width - paddleWidth)) {
       paddleX[paddleIndex] = width - paddleWidth;
     }
+    // Emitting an event to track the x position of the paddles after updating them, to sync between players
+    socket.emit('paddleMove', {
+      xPosition: paddleX[paddleIndex],
+    });
     // Hide Cursor
     canvas.style.cursor = 'none';
   });
@@ -203,4 +207,18 @@ loadGame();
 // Event listener to log the user's socket id
 socket.on('connect', () => {
   console.log('Connected as...', socket.id)
+});
+
+socket.on('startGame', (refereeId) => {
+  console.log('Referee is', refereeId);
+
+  isReferee = socket.id === refereeId;
+  startGame();
+});
+
+// When the client sends paddle data, sync paddle positions
+socket.on('paddleMove', (paddleData) => {
+  // Toggle 1 into 0, and 0 into 1, so only the necessary opposing paddle is updated on each client side during this event
+  const opponentPaddleIndex = 1 - paddleIndex;
+  paddleX[opponentPaddleIndex] = paddleData.xPosition;
 });

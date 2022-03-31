@@ -28,4 +28,8 @@ io.on('connection', (socket) => {
             io.emit('startGame', socket.id);
         }  
     });
+    // Taking paddle x position from the client and updating each client connection with it to make the game sync
+    socket.on('paddleMove', (paddleData) => {
+        socket.broadcast.emit('paddleMove', (paddleData));
+    });
 });
