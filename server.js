@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
             io.emit('startGame', socket.id);
         }  
     });
-    
+
     // Taking paddle x position from the client and updating each client connection with it to make the game sync
     socket.on('paddleMove', (paddleData) => {
         socket.broadcast.emit('paddleMove', (paddleData));
@@ -36,5 +36,9 @@ io.on('connection', (socket) => {
     // Taking emitted ball position, broadcasting it across clients
     socket.on('ballMove', (ballData) => {
         socket.broadcast.emit('ballMove', (ballData));
+    });
+
+    socket.on('disconnect', (reason) => {
+        console.log(`Client ${socket.id} disconnected: ${reason}`);
     });
 });
