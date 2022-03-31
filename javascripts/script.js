@@ -231,9 +231,14 @@ socket.on('startGame', (refereeId) => {
   startGame();
 });
 
-// When the client sends paddle data, sync paddle positions
+// When the server sends paddle data, sync paddle positions
 socket.on('paddleMove', (paddleData) => {
   // Toggle 1 into 0, and 0 into 1, so only the necessary opposing paddle is updated on each client side during this event
   const opponentPaddleIndex = 1 - paddleIndex;
   paddleX[opponentPaddleIndex] = paddleData.xPosition;
+});
+
+// When the server broadcasta ball data, sync ball positions
+socket.on('ballMove', (ballData) => {
+  ({ ballX, ballY, score } = ballData);
 });
