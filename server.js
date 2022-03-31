@@ -18,5 +18,4 @@ server.listen(PORT, () => {
 });
 
 sockets.listen(io);
-// Variable for tracking how many players are ready
 

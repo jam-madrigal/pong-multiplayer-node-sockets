@@ -1,3 +1,4 @@
+// Variable for tracking how many players are ready
 let readyPlayerCount = 0;
 
 function listen(io) {
