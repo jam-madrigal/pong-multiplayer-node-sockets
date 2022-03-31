@@ -1,5 +1,6 @@
 const http = require('http');
 const io = require('socket.io');
+
 const api = require('./api');
 // Passing in our express function to make it listen to requests on the server
 const httpServer = http.createServer(api);
