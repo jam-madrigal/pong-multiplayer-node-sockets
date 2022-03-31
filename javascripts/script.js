@@ -93,6 +93,12 @@ function ballReset() {
   ballX = width / 2;
   ballY = height / 2;
   speedY = 3;
+  // Emit for updating ball position
+  socket.emit('ballMove', {
+    ballX,
+    ballY,
+    score
+  });
 }
 
 // Adjust Ball Movement
@@ -103,6 +109,12 @@ function ballMove() {
   if (playerMoved) {
     ballX += speedX;
   }
+  // Emit for updating ball position and update score if necessary
+  socket.emit('ballMove', {
+    ballX,
+    ballY,
+    score
+  });
 }
 
 // Determine What Ball Bounces Off, Score Points, Reset Ball
@@ -156,11 +168,14 @@ function ballBoundaries() {
   }
 }
 
-// Called Every Frame
+// Called Every Frame, the game loop
 function animate() {
-  ballMove();
+  // Only track the ball position on the referee client
+  if (isReferee) {
+    ballMove();
+    ballBoundaries();
+  }
   renderCanvas();
-  ballBoundaries();
   window.requestAnimationFrame(animate);
 }
 
