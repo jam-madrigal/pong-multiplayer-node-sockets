@@ -2,7 +2,7 @@
 const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d');
 // Connect socket.io client functions to our server
-const socket = io('http://localhost:3000');
+const socket = io();
 // Variable to update to track who is the referee for the game
 let isReferee = false;
 
