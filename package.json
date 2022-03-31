@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jam-madrigal/pong-mutliplayer-node-sockets#readme",
   "dependencies": {
+    "express": "^4.17.3",
     "socket.io": "^4.4.1"
   }
 }
